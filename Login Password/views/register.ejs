@@ -1,0 +1,71 @@
+
+<link rel="stylesheet" type="text/css" href="style.css">
+<!--
+<h1>Register</h1>
+<form action="/register" method="POST">
+    <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+    <div>
+        <label for="reg">Registation Number: </label>
+        <input type="number" id="reg" name="reg" required>
+    </div>
+    <button type="submit">Register</button>
+</form>
+<a href="/login.html">Login</a>
+-->
+
+<div class="join-container">
+            <header class="join-header">
+                <h1><i class="fas fa-smile"></i> Register</h1>
+            </header>
+            <main class="join-main">
+                <form action="/login" method="POST" name="submit-to-google-sheet">
+                    <div class="form-control">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" placeholder="Enter Your Full Name..." required />
+                    </div>
+                    <div class="form-control">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" placeholder="Enter email..." required />
+                    </div>
+                    <div class="form-control">
+                        <label for="password">Reg: No</label>
+                        <input type="password" name="password" id="password" placeholder="Enter Your Reg... As Password" required />
+                    </div>
+
+                    <button type="submit" class="btn">Register</button>
+                    <br />
+                    <br />
+                    <br />
+                    <p id="msg"></p>
+
+                    <script>
+                        const scriptURL = 'https://script.google.com/macros/s/AKfycbznaRD5OnVZXiVhbHJmMMpqJu2twqmJ-krmpHIFttFZ60IqaX_cuo7XqCBIeVQ3FazMng/exec'
+                        const form = document.forms['submit-to-google-sheet']
+                        const msg = document.getElementById("msg")
+                        form.addEventListener('submit', e => {
+                            e.preventDefault()
+                            fetch(scriptURL, {
+                                    method: 'POST',
+                                    body: new FormData(form)
+                                })
+                                .then(response => {
+                                    msg.innerHTML = "Register Successfully"
+                                    setTimeout(function() {
+                                        msg.innerHTML = ""
+                                    }, 5000)
+                                    form.reset()
+                                })
+                                .catch(error => console.error('Error!', error.message))
+                        })
+
+                    </script>
+                    <a href="/login" class="btn">Login</a>
+
+                    <script src="users.js"></script>
